@@ -22,19 +22,4 @@ public class RestprojectApplication {
 		SpringApplication.run(RestprojectApplication.class, args);
 	}
 
-	/*@Bean
-	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.select()
-				.apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-				.paths(PathSelectors.any())
-				.build()
-				.apiInfo(apiInfo())
-				.securitySchemes(Collections.singletonList(new ApiKey(RestSecurityFilter.HTTP_REQUEST_API_KEY, RestSecurityFilter.HTTP_REQUEST_API_KEY, "header")))
-				.useDefaultResponseMessages(false);
-	}
-	private ApiKey apiKey() {
-		return new ApiKey("Bearer", "Authorization", "header");
-	}*/
-
 }

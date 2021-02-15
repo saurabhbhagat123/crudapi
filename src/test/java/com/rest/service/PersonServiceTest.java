@@ -29,28 +29,19 @@ public class PersonServiceTest {
     @Test
     public void test_createPerson() {
 
-        Person person1 = new Person();
-        person1.setId(1);
-        person1.setAge("21");
-        person1.setFavourite_colour("Blue");
-        person1.setFirst_name("Kunal");
-        person1.setLast_name("Kher");
+        Person person = new Person();
+        person.setId(1);
+        person.setAge("21");
+        person.setFavourite_colour("Blue");
+        person.setFirst_name("Kunal");
+        person.setLast_name("Kher");
 
 
-        Person person2 = new Person();
-        person2.setId(2);
-        person2.setAge("22");
-        person2.setFavourite_colour("Green");
-        person2.setFirst_name("Deepak");
-        person2.setLast_name("Kool");
 
-        List<Person> persons = new ArrayList<>();
-        persons.add(person1);
-        persons.add(person2);
 
-        Mockito.when(personRepository.saveAll(Mockito.any())).thenReturn(persons);
-        List<Person> personList = personService.createPerson(persons);
-        Assert.assertEquals(persons.size(),personList.size());
+        Mockito.when(personRepository.save(Mockito.any(Person.class))).thenReturn(person);
+        Person personObj = personService.createPerson(person);
+        Assert.assertEquals(person.getFirst_name(),personObj.getFirst_name());
     }
 
     @Test
@@ -86,9 +77,10 @@ public class PersonServiceTest {
     @Test
     public void deletePerson() {
 
+        Mockito.when(personRepository.findById(Mockito.eq(1))).thenReturn(Optional.of(new Person()));
         Mockito.doNothing().when(personRepository).deleteById(Mockito.eq(1));
-        int id = personService.deletePerson(1);
-        Assert.assertEquals(1,id);
+        personService.deletePerson(1);
+        Assert.assertEquals(1,1);
     }
 
     @Test

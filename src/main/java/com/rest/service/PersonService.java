@@ -1,6 +1,7 @@
 package com.rest.service;
 
 import com.rest.entity.Person;
+import com.rest.exception.PersonAlreadyExistException;
 import com.rest.exception.PersonNotFoundException;
 import com.rest.repository.PersonRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -19,9 +20,13 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
 
-    public List<Person> createPerson(List<Person> persons){
+    public Person createPerson(Person person){
         log.info("createPerson called ");
-        return personRepository.saveAll(persons);
+        Optional<Person> personOptional = personRepository.findById(person.getId());
+        if(personOptional.isPresent()){
+            throw new PersonAlreadyExistException("Person with ID "+person.getId()+" already exists");
+        }
+        return personRepository.save(person);
     }
 
     public Person getPersonById(int id){
@@ -44,10 +49,15 @@ public class PersonService {
         return personRepository.save(person);
     }
 
-    public int deletePerson(int id){
+    public void deletePerson(int id){
         log.info("deletePerson called ");
+
+        Optional<Person> personOptional = personRepository.findById(id);
+        if(!personOptional.isPresent()){
+            throw new PersonNotFoundException("Person with ID "+id+" not found");
+        }
+
         personRepository.deleteById(id);
-        return id;
     }
 
     public List<Person> getAllPerson(){
