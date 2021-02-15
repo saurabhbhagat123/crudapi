@@ -5,10 +5,6 @@
 
 This project performs CRUD(create,retrieve,update,delete) operation on Person enity.
 
-The Docker build uses a [multi-stage build setup](https://docs.docker.com/develop/develop-images/multistage-build/)
-to minimize the size of the generated Docker image.
-
-> **Golang developer?** Check out https://github.com/miguno/golang-docker-build-tutorial
 
 ## Features
 - Exposed CRUD api which performs insertion,updation,deletion and retrieval operation.
@@ -41,35 +37,35 @@ $ docker run -p 8080:8080 rest-crud
 
 **Step 3:** Test this application
 
-```shell
-1.Open url http://localhost:8080/swagger-ui.html
-2.As this application is secured, you need to authorize this application
-Click on Authorize button on right,
-3.Enter client id and secret,
-client id: client
-secret: secret
-Select all scopes
-Click on Authorize
-4.Expand person-controller and run the API.
 
-You can also test/consume this api using POSTMAN
+- Open url http://localhost:8080/swagger-ui.html<br>
+- As this application is secured, you need to authorize this application
+Click on Authorize button on right.<br>
+- Enter client id and secret,<br>
+client id: client<br>
+secret: secret<br>
+Select all scopes<br>
+Click on Authorize<br><br>
+- Expand person-controller and run the API.<br>
+
+You can also test/consume this api using POSTMAN<br>
 Steps:
-1.Fetch Access Token
+- Fetch Access Token
 
-URL: http://localhost:8080/oauth/token
-Method Type: POST
-Body:
-grant_type: client_credentials
-client_id: client
-client_secret: secret
-Content-Type: application/x-www-form-urlencoded
+    **Token URL**: http://localhost:8080/oauth/token<br>
+    **Method Type**: POST<br>
+    **Body**:<br>
+        grant_type: client_credentials<br>
+        client_id: client<br>
+        client_secret: secret<br>
+**Content-Type**: application/x-www-form-urlencoded<br>
 
-2. Pass access token in Authorization header to access resource API
-For example,
-Resource API: http://localhost:8080/api/persons
-Header:
-  Authorization: Bearer bda55976-9d48-4b32-b164-b787effc80be
-```
+- Pass access token in Authorization header to access resource API<br>
+For example,<br>
+Resource API: http://localhost:8080/api/persons<br>
+Header:<br>
+  Authorization: Bearer bda55976-9d48-4b32-b164-b787effc80be<br>
+
 
 
 # Notes
