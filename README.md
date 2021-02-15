@@ -20,7 +20,7 @@ Docker must be installed. That's it. You do not need a Java JDK or Maven install
 # Usage and Demo
 
 **Step 1:** Create the Docker image according to [Dockerfile](Dockerfile).
-This step uses Maven to build, test, and package the [Java application](src/main/java/com/miguno/App.java)
+This step uses Maven to build, test, and package the [Java application]
 according to [pom.xml](pom.xml).  
 
 ```shell
